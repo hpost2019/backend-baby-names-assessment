@@ -54,13 +54,13 @@ def extract_names(filename):
                 names.append(year.group(1))
             name_match = pattern2.search(line)
             if name_match:
-                
                 if name_match.group(2) not in names_dict:
                     names_dict[name_match.group(2)] = name_match.group(1)
                 if name_match.group(3) not in names_dict:
                     names_dict[name_match.group(3)] = name_match.group(1)
-    print(names, names_dict)
-
+    res = list(sorted(names_dict.items()))
+    for item in res:
+        names.append(item[0] + ' ' + item[1])
     return names
 
 
