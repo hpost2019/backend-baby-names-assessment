@@ -35,6 +35,8 @@ import sys
 import re
 import argparse
 
+__author__ = "hpost2019"
+
 
 def extract_names(filename):
     """
@@ -97,11 +99,15 @@ def main(args):
     # Format the resulting list as a vertical list (separated by newline \n).
     # Use the create_summary flag to decide whether to print the list
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
-
     for file in file_list:
-        print("file name", file)
-        result = "\n".join(extract_names(file)) + "\n"
-        print(result)
+        filename = file + '.summary'
+        result = "\n".join(extract_names(file)) 
+        if create_summary:
+            f = open(filename, "a")
+            f.write(result)
+            f.close()
+        else:
+            print(result)
 
 
 if __name__ == '__main__':
